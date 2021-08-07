@@ -28,30 +28,39 @@ var helpers = {
 	itemData: function (object) {
 		var item = Array.from(object).reduce((acc, input) => ({ ...acc, [input.id]: input.value }), {});
 		var path = document.getElementById("CurtainImg").alt;
+		item["featureOne"] = document.getElementById("featureOne").checked;
+		item["featureTwo"] = document.getElementById("featureTwo").checked;
+		item["featureThree"] = document.getElementById("featureThree").checked;
 		item["Path"] = path;
+		item["Title"] = path.substring(path.lastIndexOf("\\") + 1, path.lastIndexOf("_"));
 		//Fix choosing the same type of curtain leading to mutiple ids that are the same
-		item["Id"] = path.substring(path.lastIndexOf("\\") + 1, path.lastIndexOf("_"));
+		item["Id"] = item.Title + item.orderHeight + item.orderWidth + item.orderColor;
 		return item;
 	},
 	updateView: function () {
 		var items = storage.getCart();
 		var compiled = "";
 		for (var i = 0; i < items.length; i++) {
-			compiled += '<div class="top-cart item">' +
-				'<div class="top-cart-item-image border-0"><img src="' + items[i].Path + '"/></div>' +
-				'<div class="top-cart-item-desc">' +
-				'<div class="top-cart-item-desc-title">' +
-				'<p class="fw-medium">' + "Width:" + items[i].orderWidth + "Height:" + items[i].orderHeight + '</p>' +
-				'<div class="d-flex mt-2">' +
-				'<a href="#" id="' + "E" + items[i].Id + '" class="fw-normal text-black-50 text-smaller"><u>Edit</u></a>' +
-				'<a href="#" id="' + "R" + items[i].Id + '" class="fw-normal text-black-50 text-smaller ms-3"><u>Remove</u></a>' +
-				'</div></div ></div>' +
-				'</div >';
+			compiled +=
+				'<div class="top-cart item">' +
+					'<div class="top-cart-item-image border-0"><img src="' + items[i].Path + '"/></div>' +
+					'<div class="top-cart-item-desc">' +
+						'<div class="top-cart-item-desc-title">' +
+							'<a class="fw-medium">' + "Color:" + items[i].orderColor + " Room:" + items[i].orderRoom + '</p>' +
+							'<div class="d-flex mt-2" data-id="' + items[i].Id + '">' +
+								'<a href="#" data-toggle="modal" data-target="#modal" id="editBtn" class="fw-normal text-black-50 text-smaller"><u>Edit</u></a>' +
+								'<a href="#" id="removeBtn" class="fw-normal text-black-50 text-smaller ms-3"><u>Remove</u></a>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+				'</div>';
 		}
 		this.setHtml('cartItems', compiled);
+		javascript: document.getElementById('top-cart-number').innerHTML = items.length.toString();
 	},
 	emptyView: function () {
 		this.setHtml('cartItems', '<p>Your cart is empty</p>');
+		javascript: document.getElementById('top-cart-number').innerHTML = '';
 	},
 };
 
@@ -69,27 +78,57 @@ var cart = {
 		this.total = 0;
 		storage.clearCart();
 		helpers.emptyView();
-
 	},
 	addItem: function (item) {
 		this.items.push(item);
 		storage.saveCart(this.items);
 		helpers.updateView();
 	},
-	removeItem: function (id) {
+	removeItem: function (object) {
+		var id = object.getAttribute("data-id");
 		for (var i = 0; i < this.items.length; i++) {
 			var _item = this.items[i];
-			if (id == _item.id) {
-				items.splice(i, 1);
+			if (id == _item.Id) {
+				this.items.splice(i, 1);
 			}
 		}
 		storage.saveCart(this.items);
-		helpers.updateView();
-	}
+		if (this.items.length != 0) {
+			helpers.updateView();
+		}
+		else {
+			helpers.emptyView();
+		}
+	},
+	editItem: function (object) {
+		var id = object.getAttribute("data-id");
+		var index;
+		for (index = 0; index < this.items.length; index++) {
+			var _item = this.items[index];
+			if (id == _item.Id) {
+				var item = this.items[index];
+				openDialogue(item["Path"]);
+				document.getElementById("orderWidth").value = item["orderWidth"];
+				document.getElementById("orderHeight").value = item["orderHeight"];
+				document.getElementById("orderColor").value = item["orderColor"];
+				document.getElementById("orderRoom").value = item["orderRoom"];
+				if (item["featureOne"]) {
+					document.getElementById("featureOne").setAttribute("selected", "selected");
+				}
+				else if (item["featureTwo"]) {
+					document.getElementById("featureTwo").setAttribute("selected", "selected");
+				}
+				else if (item["featureThree"]) {
+					document.getElementById("featureThree").setAttribute("selected", "selected");
+				}
+				break;
+            }
+		}
+    }
 };
 
 document.getElementById("submitBtn").addEventListener('click', function (e) {
-	var product = document.querySelectorAll('#orderForm input');
+	var product = document.querySelectorAll('#orderForm input, select');
 	var item = helpers.itemData(product);
 	cart.addItem(item);
 });
@@ -98,18 +137,60 @@ document.getElementById("clearBtn").addEventListener('click', function (e) {
 	cart.clearItems();
 });
 
+
+function listLoadCart() {
+	var items = storage.getCart();
+	if (items.length != 0) {
+		var compiled = "";
+		for (var i = 0; i < items.length; i++) {
+			compiled +=
+				'<li class="list-group-item">' +
+				'<div class="media align-items-lg-center flex-column justify-content-center flex-lg-row p-3">' +
+				'<div class="media-body order-2 order-lg-1">' +
+				'<h4 class="mt-0 font-weight-bold mb-2">' + items[i].Title + '</h4>' +
+				'<p class="fw-medium">' + "Width: " + items[i].orderWidth + " Height: " + items[i].orderHeight + " Color: " + items[i].orderColor + " Room: " + items[i].orderRoom + '</p>' +
+				'</div><img src="' + items[i].Path + '" width="100" height="100" class="ml-lg-5 order-1 order-lg-2">' +
+				'</div>' +
+				'</li>';
+		}
+		compiled +=
+			'<li class="list-group-item">' +
+			'<div class="d-flex mt-2">' +
+			'<form class="row" id="orderForm" action="" novalidate="novalidate">' +
+			'<div class="col-6 form-group">' +
+			'<label>Email</label>' +
+			'<input type="email" name="email" id="email" class="form-control required">' +
+			'</div>' +
+			'<div class="col-6 form-group">' +
+			'<label>Phone Number</label>' +
+			'<input type="tel" name="phoneNum" id="phoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control required">' +
+			'</div>' +
+			'<div class="col-12">' +
+			'<br>' +
+			'<button value="send" id="sendBtn" type="submit" class="button button-large fw-normal form-control bg-color">Send Order</button>' +
+			'</div>' +
+			'</form>' +
+			'</div>' +
+			'</li>';
+		document.getElementById("orderList").innerHTML = compiled;
+	}
+	else {
+    }
+}
+
 // Retrives item choices and displays in the modal
 function openDialogue(path) {
 	document.getElementById("CurtainImg").src = path;
 	document.getElementById("CurtainImg").alt = path;
 	let itemName = path.substring(path.lastIndexOf("\\") + 1, path.lastIndexOf("_"));
 	document.getElementById("orderColor").options.length = 0;
+	document.getElementById("curtainTitle").innerHTML = itemName;
 	$.ajax({
 		type: "GET",
 		url: "/api/Item?ItemName=" + itemName,
 		contentType: "application/json",
 		success: function (result, status, xhr) {
-			var s = '<option value="-1">Select One</option>';
+			var s = '<option value="none" selected disabled hidden>Select One</option>';
 			$.each(result, function (i, item) {
 				s += '<option value="' + item.strColor + '">' + item.strColor + '</option>';
 			});
@@ -119,4 +200,10 @@ function openDialogue(path) {
 			console.log(xhr)
 		}
 	});
+}
+
+window.onload = function () {
+	if (window.location.href.indexOf('Order.cshtml') > -1) {
+		alert("order");
+	}
 }

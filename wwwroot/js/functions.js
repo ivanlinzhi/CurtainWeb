@@ -594,7 +594,6 @@ var SEMICOLON = SEMICOLON || {};
 			}
 
 			if (($body.hasClass('overlay-menu') && primaryMenu.hasClass('on-click')) && ($body.hasClass('device-xl') || $body.hasClass('device-lg'))) {
-				alert("runs this");
 				menuItemSubsLinks.off('click').on('click', function (e) {
 					let triggerEl = $(this);
 					triggerEl.parents(subMenuT).siblings().find(submenus).stop(true, true).slideUp(menuSpeed);
@@ -841,7 +840,6 @@ var SEMICOLON = SEMICOLON || {};
 
 		sidePanel: function () {
 			$(".side-panel-trigger").off('click').on('click', function () {
-				alert("button pressed");
 				$(document.body).toggleClass("side-panel-open");
 				if ($body.hasClass('device-touch') && $body.hasClass('side-push-panel')) {
 					$(document.body).toggleClass("ohidden");

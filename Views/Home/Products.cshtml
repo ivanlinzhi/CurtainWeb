@@ -19,7 +19,7 @@
                     <h3 class="fw-medium h1">All <span data-animate="svg-underline-animated" class="svg-underline nocolor"><span>Products</span></span></h3>
                 </div>
 
-                <div class="col-auto mb-4 d-flex">
+                @*<div class="col-auto mb-4 d-flex">
 
                     <div class="dropdown sortbuttons">
                         <button class="button button-border m-0 button-dark border-width-1 border-default nott ls0 fw-normal h-bg-color dropdown-toggle" type="button" id="catButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose Category</button>
@@ -46,95 +46,9 @@
                         </div>
                     </div>
 
-                </div>
+                </div>*@
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 class="modal-title container text-center fw-normal" id="exampleModalLabel">Order</h2>
-                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                            </button>
-                        </div>
-
-                        <div class="modal-body">
-                            <!-- Product
-                            ============================================= -->
-                            <div class="product modal-padding">
-
-                                <div class="row gutter-50 col-mb-50">
-
-                                    <!-- Product Image============================================= -->
-                                    <div class="col-md-6">
-                                        <div class="row align-items-start gutter-30">
-                                            <!-- .align-items-center for mobile Bugs fixed -->
-                                            <img id="CurtainImg" class="col-md-12" src="" alt="">
-                                        </div>
-                                    </div>
-
-                                    <!-- Form============================================= -->
-                                    <div class="col-md-6 product-desc content-sticky">
-
-                                        <!-- Product Title============================================= -->
-                                        <h2 class="mb-3 fw-normal">Curtain Title</h2>
-
-                                        <!-- Line============================================= -->
-                                        <div class="line my-3"></div>
-
-                                        <form class="row" id="orderForm" action="" novalidate="novalidate">
-                                            <div class="col-6 form-group">
-                                                <label>Width (Inches)</label>
-                                                <input type="text" name="orderWidth" id="orderWidth" class="form-control required">
-                                            </div>
-                                            <div class="col-6 form-group">
-                                                <label>Height (Inches)</label>
-                                                <input type="text" name="orderHeight" id="orderHeight" class="form-control required">
-                                            </div>
-                                            <div class="col-6 form-group">
-                                                <label>Color</label>
-                                                <select class="form-select valid" name="orderColor" id="orderColor"></select>
-                                            </div>
-                                            <div class="col-6 form-group">
-                                                <label>Room</label>
-                                                <select class="form-select valid" name="orderRoom" id="orderRoom">
-                                                    <option value="Living">Living</option>
-                                                    <option value="Bedroom">Bedroom</option>
-                                                    <option value="Kitchen">Kitchen</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-12 form-group">
-                                                <label>Feature</label>
-                                                <br>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" name="featureOne" id="featureOne" value="Motor">
-                                                    <label class="form-check-label nott ms-2" for="featureOne">Motor</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" name="featureTwo" id="featureTwo" value="Google">
-                                                    <label class="form-check-label nott ms-2" for="featureTwo">Google</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" name="featureThree" id="featureThree" value="Manual">
-                                                    <label class="form-check-label nott ms-2" for="featureThree">Manual</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <br>
-                                                <button value="Add" id="submitBtn" type="submit" class="button button-large fw-normal form-control bg-color add-to-cart"><i style="position: relative; top: -2px;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFF" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48Z" opacity="0.2"></path><path d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><circle cx="80" cy="204" r="20" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><circle cx="184" cy="204" r="20" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><path d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg></i> Add to Cart</button>
-                                            </div>
-                                        </form>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal End -->
             <!-- Shop
             ============================================= -->
 

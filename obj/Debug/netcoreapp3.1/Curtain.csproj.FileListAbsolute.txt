@@ -81,3 +81,4 @@ C:\Jonathan\Curtain\Curtain\obj\Debug\netcoreapp3.1\Curtain.MvcApplicationPartsA
 C:\Jonathan\Curtain\Curtain\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\Jonathan\Curtain\Curtain\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Jonathan\Curtain\Curtain\obj\Debug\netcoreapp3.1\Razor\Views\Home\Email.cshtml.g.cs
+C:\Jonathan\Curtain\Curtain\obj\Debug\netcoreapp3.1\Razor\Views\Home\Order.cshtml.g.cs
