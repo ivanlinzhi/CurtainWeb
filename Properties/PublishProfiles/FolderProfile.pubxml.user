@@ -16,25 +16,25 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/01/2021 22:43:47</publishTime>
     </File>
     <File Include="Curtain.deps.json">
-      <publishTime>08/05/2021 00:30:39</publishTime>
+      <publishTime>08/09/2021 01:51:59</publishTime>
     </File>
     <File Include="Curtain.dll">
-      <publishTime>08/05/2021 00:30:25</publishTime>
+      <publishTime>08/09/2021 01:51:56</publishTime>
     </File>
     <File Include="Curtain.exe">
-      <publishTime>08/05/2021 00:30:25</publishTime>
+      <publishTime>08/09/2021 01:51:56</publishTime>
     </File>
     <File Include="Curtain.pdb">
-      <publishTime>08/05/2021 00:30:25</publishTime>
+      <publishTime>08/09/2021 01:51:56</publishTime>
     </File>
     <File Include="Curtain.runtimeconfig.json">
-      <publishTime>08/05/2021 00:30:30</publishTime>
+      <publishTime>08/08/2021 00:25:12</publishTime>
     </File>
     <File Include="Curtain.Views.dll">
-      <publishTime>08/05/2021 00:30:29</publishTime>
+      <publishTime>08/09/2021 01:51:57</publishTime>
     </File>
     <File Include="Curtain.Views.pdb">
-      <publishTime>08/05/2021 00:30:29</publishTime>
+      <publishTime>08/09/2021 01:51:57</publishTime>
     </File>
     <File Include="Microsoft.Data.SqlClient.dll">
       <publishTime>08/25/2020 23:24:48</publishTime>
@@ -157,7 +157,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/15/2019 08:37:42</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>08/05/2021 00:30:39</publishTime>
+      <publishTime>08/09/2021 01:51:59</publishTime>
     </File>
     <File Include="wwwroot/css/animate.css">
       <publishTime>07/15/2021 13:01:16</publishTime>
@@ -285,11 +285,17 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/images/section.jpg">
       <publishTime>07/15/2021 13:01:16</publishTime>
     </File>
+    <File Include="wwwroot/images/underline.svg">
+      <publishTime>08/08/2021 23:36:07</publishTime>
+    </File>
     <File Include="wwwroot/js/functions.js">
-      <publishTime>08/05/2021 00:10:27</publishTime>
+      <publishTime>08/07/2021 16:51:34</publishTime>
     </File>
     <File Include="wwwroot/js/jquery.js">
       <publishTime>07/15/2021 13:01:16</publishTime>
+    </File>
+    <File Include="wwwroot/js/main.js">
+      <publishTime>08/09/2021 01:48:37</publishTime>
     </File>
     <File Include="wwwroot/js/plugins.min.js">
       <publishTime>07/15/2021 13:01:16</publishTime>

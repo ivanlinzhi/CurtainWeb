@@ -27,7 +27,7 @@
     <!-- / -->
 </head>
 
-<body class="stretched" onload="loadCart()">
+<body class="stretched">
 
     <!-- Cart Panel Background
     ============================================= -->
@@ -204,7 +204,7 @@
             <div class="header-wrap-clone"></div>
         </header><!-- #header end -->
         <!-- Modal -->
-        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="modal" data-id="submit" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -253,7 +253,7 @@
                                         <div class="col-6 form-group">
                                             <label>Room</label>
                                             <select class="form-select valid" name="orderRoom" id="orderRoom">
-                                                <option value="none" selected disabled hidden>Select One</option>
+                                                <option value="None" selected disabled hidden>Select One</option>
                                                 <option value="Living">Living</option>
                                                 <option value="Bedroom">Bedroom</option>
                                                 <option value="Kitchen">Kitchen</option>
@@ -394,52 +394,6 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polygon points="48 208 128 128 208 208 48 208" opacity="0.2"></polygon><polygon points="48 208 128 128 208 208 48 208" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polygon><polyline points="48 128 128 48 208 128" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>
     </div>
 
-
-    <script>
-        function loadCart() {
-            if (storage.getCart() != null) {
-                cart.setItems(storage.getCart());
-                helpers.updateView();
-            } else {
-                helpers.emptyView();
-            }
-
-            var removeBtns = document.querySelectorAll('#removeBtn');
-            [].forEach.call(removeBtns, function (removeBtn) {
-                removeBtn.addEventListener('click', function (e) {
-                    var item = cart.removeItem(this.parentNode);
-                    listLoadCart();
-                });
-
-            });
-
-            var editBtns = document.querySelectorAll('#editBtn');
-            [].forEach.call(editBtns, function (editBtn) {
-                editBtn.addEventListener('click', function (e) {
-                    var item = cart.editItem(this.parentNode);
-                    listLoadCart();
-                });
-            });
-
-            listLoadCart();
-
-            document.getElementById("sendBtn").addEventListener('click', function (e) {
-                var email = document.getElementById("email").value;
-                var phoneNum = document.getElementById("phoneNum").value;
-
-                $.ajax({
-                    type: "POST",
-                    url: "/api/Item",
-                    data: { Cart: localStorage.getItem(cartId), Email: email, PhoneNum: phoneNum},
-                    contentType: "application/json",
-                    done: function (result) {
-                    },
-                    error: function (xhr, status, error) {
-                    }
-                });
-            });
-        }
-    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/plugins.min.js"></script>

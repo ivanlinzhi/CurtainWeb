@@ -34,7 +34,6 @@ C:\Jonathan\Curtain\Curtain\obj\Release\netcoreapp3.1\Curtain.dll
 C:\Jonathan\Curtain\Curtain\obj\Release\netcoreapp3.1\Curtain.pdb
 C:\Jonathan\Curtain\Curtain\obj\Release\netcoreapp3.1\Curtain.genruntimeconfig.cache
 C:\Jonathan\Curtain\Curtain\obj\Release\netcoreapp3.1\Curtain.csproj.CopyComplete
-C:\Jonathan\Curtain\Curtain\bin\Release\netcoreapp3.1\web.config
 C:\Jonathan\Curtain\Curtain\bin\Release\netcoreapp3.1\Humanizer.dll
 C:\Jonathan\Curtain\Curtain\bin\Release\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Jonathan\Curtain\Curtain\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
@@ -79,5 +78,5 @@ C:\Jonathan\Curtain\Curtain\bin\Release\netcoreapp3.1\runtimes\win\lib\netstanda
 C:\Jonathan\Curtain\Curtain\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Jonathan\Curtain\Curtain\obj\Release\netcoreapp3.1\Razor\Views\Home\About.cshtml.g.cs
 C:\Jonathan\Curtain\Curtain\obj\Release\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
-C:\Jonathan\Curtain\Curtain\obj\Release\netcoreapp3.1\Razor\Views\Home\Email.cshtml.g.cs
 C:\Jonathan\Curtain\Curtain\obj\Release\netcoreapp3.1\Razor\Views\Home\Products.cshtml.g.cs
+C:\Jonathan\Curtain\Curtain\obj\Release\netcoreapp3.1\Razor\Views\Home\Order.cshtml.g.cs

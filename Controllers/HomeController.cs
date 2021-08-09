@@ -59,31 +59,6 @@ namespace Curtain.Controllers
             return View();
         }
 
-        //public IActionResult Email()
-        //{
-        //    //create the mail message 
-        //    MailMessage mail = new MailMessage();
-
-        //    //set the addresses 
-        //    mail.From = new MailAddress("postmaster@yourdomain.com"); //IMPORTANT: This must be same as your smtp authentication address.
-        //    mail.To.Add("jonathan.lin1104@gmail.com");
-
-        //    //set the content 
-        //    mail.Subject = "This is an email";
-        //    mail.Body = "This is from system.net.mail using C sharp with smtp authentication.";
-        //    //send the message 
-        //    SmtpClient smtp = new SmtpClient("mail.yourdomain.com");
-
-        //    //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-        //    NetworkCredential Credentials = new NetworkCredential("postmaster@yourdomain.com", "password");
-        //    smtp.UseDefaultCredentials = false;
-        //    smtp.Credentials = Credentials;
-        //    smtp.Port = 25;    //alternative port number is 8889
-        //    smtp.EnableSsl = false;
-        //    smtp.Send(mail);
-        //    return View();
-        //}
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
