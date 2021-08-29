@@ -46,11 +46,13 @@ namespace Curtain.Controllers
             for (int i = 0; i < CartList.Count; i++)
             {
                 msg += "Order " + (i + 1) + ":\n";
+                msg += "Title Name: " + CartList[i].Title + "\n";
+                msg += "Image: " + CartList[i].Path.Substring(CartList[i].Path.LastIndexOf("\\") + 1) + "\n";
                 msg += "Width: " + CartList[i].orderWidth + " inches\n";
                 msg += "Height: " + CartList[i].orderHeight + " inches\n";
                 msg += "Color: " + CartList[i].orderColor + "\n";
-                msg += "Room: " + CartList[i].orderRoom + "\n";
-                msg += "Features:\n\n";
+                msg += "Room: " + CartList[i].orderRoom + "\n\n";
+                msg += "Features:\n";
                 msg += "Motor: " + CartList[i].featureOne + "\n";
                 msg += "Google: " + CartList[i].featureTwo + "\n";
                 msg += "Manual: " + CartList[i].featureThree + "\n";
@@ -58,7 +60,7 @@ namespace Curtain.Controllers
             }
 
             m.From = new MailAddress("postmaster@tamily.ca");
-            m.To.Add("j.linyolo@gmail.com");
+            m.To.Add("felder@shaw.ca");
             m.Subject = "Order for " + Email;
             m.Body = msg;
             sc.Host = "mail.tamily.ca";

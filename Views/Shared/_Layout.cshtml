@@ -237,23 +237,23 @@
                                     <!-- Line============================================= -->
                                     <div class="line my-3"></div>
 
-                                    <form class="row" id="orderForm" action="" novalidate="novalidate">
+                                    <form class="row" id="orderForm" action="">
                                         <div class="col-6 form-group">
                                             <label>Width (Inches)</label>
-                                            <input type="text" name="orderWidth" id="orderWidth" class="form-control required">
+                                            <input type="text" name="orderWidth" id="orderWidth" class="form-control required" required>
                                         </div>
                                         <div class="col-6 form-group">
                                             <label>Height (Inches)</label>
-                                            <input type="text" name="orderHeight" id="orderHeight" class="form-control required">
+                                            <input type="text" name="orderHeight" id="orderHeight" class="form-control required" required>
                                         </div>
                                         <div class="col-6 form-group">
                                             <label>Color</label>
-                                            <select class="form-select valid" name="orderColor" id="orderColor"></select>
+                                            <select class="form-select valid" name="orderColor" id="orderColor" required></select>
                                         </div>
                                         <div class="col-6 form-group">
                                             <label>Room</label>
-                                            <select class="form-select valid" name="orderRoom" id="orderRoom">
-                                                <option value="None" selected disabled hidden>Select One</option>
+                                            <select class="form-select valid" name="orderRoom" id="orderRoom" required>
+                                                <option value="" selected disabled hidden></option>
                                                 <option value="Living">Living</option>
                                                 <option value="Bedroom">Bedroom</option>
                                                 <option value="Kitchen">Kitchen</option>
@@ -327,9 +327,10 @@
                                 <h4 class="ls0 nott">Support</h4>
 
                                 <ul class="list-unstyled iconlist ms-0">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Products">Shop</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                                 </ul>
 
                             </div>
@@ -337,7 +338,7 @@
 
                         <!-- Footer Col 3 -->
                         <div class="col-lg-2 col-md-3 col-6">
-                            <div class="widget widget_links widget-li-noicon">
+                            @*<div class="widget widget_links widget-li-noicon">
 
                                 <h4 class="ls0 nott">Trending</h4>
 
@@ -347,12 +348,12 @@
                                     <li><a href="about.html">Who are we</a></li>
                                 </ul>
 
-                            </div>
+                            </div>*@
                         </div>
 
                         <!-- Footer Col 4 -->
                         <div class="col-lg-2 col-md-3 col-6">
-                            <div class="widget widget_links widget-li-noicon">
+                            @*<div class="widget widget_links widget-li-noicon">
 
                                 <h4 class="ls0 nott">Get to Know us</h4>
 
@@ -362,7 +363,7 @@
                                     <li> Filler</li>
                                 </ul>
 
-                            </div>
+                            </div>*@
                         </div>
 
                         <!-- Footer Col 5 -->

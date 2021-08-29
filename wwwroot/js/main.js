@@ -39,7 +39,7 @@ var helpers = {
 		item["Path"] = path;
 		item["Title"] = path.substring(path.lastIndexOf("\\") + 1, path.lastIndexOf("_"));
 		//Fix choosing the same type of curtain leading to mutiple ids that are the same
-		item["Id"] = item.Title + item.orderHeight + item.orderWidth + item.orderColor;
+		item["Id"] = create_UUID();
 		return item;
 	},
 	updateView: function () {
@@ -61,17 +61,27 @@ var helpers = {
 				'</div>';
 		}
 		this.setHtml('cartItems', compiled);
-		javascript: document.getElementById('top-cart-number').innerHTML = items.length.toString();
+		if (items.length == 0) {
+			document.getElementById('top-cart-number').style = "display: none";
+		}
+		else {
+			document.getElementById('top-cart-number').style = "";
+			document.getElementById('top-cart-number').innerHTML = items.length.toString();
+        }
 	},
-	clearModal: function() {
+	clearModal: function () {
 		document.getElementById("orderWidth").value = "";
 		document.getElementById("orderHeight").value = "";
 		document.getElementById("orderColor").value = "None";
 		document.getElementById("orderRoom").value = "None";
+		document.getElementById("featureOne").checked = "";
+		document.getElementById("featureTwo").checked = "";
+		document.getElementById("featureThree").checked = "";
     },
 	emptyView: function () {
 		this.setHtml('cartItems', '<p>Your cart is empty</p>');
 		javascript: document.getElementById('top-cart-number').innerHTML = '';
+		document.getElementById('top-cart-number').style = "display: none";
 	},
 };
 
@@ -128,20 +138,7 @@ var cart = {
 			var _item = this.items[index];
 			if (id == _item.Id) {
 				var item = this.items[index];
-				openDialogue(item["Path"]);
-				document.getElementById("orderWidth").value = item["orderWidth"];
-				document.getElementById("orderHeight").value = item["orderHeight"];
-				document.getElementById("orderColor").value = item["orderColor"];
-				document.getElementById("orderRoom").value = item["orderRoom"];
-				if (item["featureOne"]) {
-					document.getElementById("featureOne").setAttribute("selected", "selected");
-				}
-				else if (item["featureTwo"]) {
-					document.getElementById("featureTwo").setAttribute("selected", "selected");
-				}
-				else if (item["featureThree"]) {
-					document.getElementById("featureThree").setAttribute("selected", "selected");
-				}
+				openEditModal(item);
 				break;
             }
 		}
@@ -178,41 +175,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("submitBtn").addEventListener('click', function (e) {
 		var product = document.querySelectorAll('#orderForm input, select');
-		var item = helpers.itemData(product);
-		if (document.getElementById("modal").getAttribute("data-id") == "submit") {
-			cart.addItem(item);
+		if (product.item(0).value != "" && product.item(1).value != "" && product.item(2).value != "" && product.item(3).value != "") {
+			var item = helpers.itemData(product);
+			if (document.getElementById("modal").getAttribute("data-id") == "submit") {
+				cart.addItem(item);
+			}
+			else if (document.getElementById("modal").getAttribute("data-id") == "edit") {
+				cart.removeItemId(document.getElementById("modal").getAttribute("data-name"));
+				cart.addItem(item);
+				document.getElementById("modal").setAttribute("data-id", "submit");
+				document.getElementById("modal").setAttribute("data-name", "");
+			}
 		}
-		else if (document.getElementById("modal").getAttribute("data-id") == "edit") {
-			cart.removeItemId(document.getElementById("modal").getAttribute("data-name"));
-			cart.addItem(item);
-			document.getElementById("modal").setAttribute("data-id", "submit");
-			document.getElementById("modal").setAttribute("data-name", "");
-        }
 	});
 
 	if (document.getElementById("sendBtn") != null) {
 		document.getElementById("sendBtn").addEventListener('click', function (e) {
 			var email = document.getElementById("email").value;
 			var phoneNum = document.getElementById("phoneNum").value;
-			$.ajax({
-				type: "POST",
-				url: "/api/Item/CurtainCheckoutAPI?Cart=" + localStorage.getItem(cartId) + "&Email=" + email + "&PhoneNum=" + phoneNum,
-				//data: { Cart: localStorage.getItem(cartId), Email: email, PhoneNum: phoneNum },
-				//data: { Email: 'test' },
-				dataType: "JSON",
-				//headers: {"Content-Type":"application/x-www-form-urlencoded"},
-				//contentType: "application/x-www-form-urlencoded",
-				//contentType: "application/json",
-				success: function (result) {
-				},
-				error: function (xhr, status, error) {
-				},
-				beforeSend: function () {
-				},
-				complete: function () {
-				}
-			});
-			storage.clearCart();
+			if (email != "" && phoneNum != "") {
+				$.ajax({
+					type: "POST",
+					url: "/api/Item/CurtainCheckoutAPI?Cart=" + localStorage.getItem(cartId) + "&Email=" + email + "&PhoneNum=" + phoneNum,
+					//data: { Cart: localStorage.getItem(cartId), Email: email, PhoneNum: phoneNum },
+					//data: { Email: 'test' },
+					dataType: "JSON",
+					//headers: {"Content-Type":"application/x-www-form-urlencoded"},
+					//contentType: "application/x-www-form-urlencoded",
+					//contentType: "application/json",
+					success: function (result) {
+					},
+					error: function (xhr, status, error) {
+					},
+					beforeSend: function () {
+					},
+					complete: function () {
+					}
+				});
+				storage.clearCart();
+			}
 		});
 	}
 });
@@ -236,14 +237,14 @@ function listLoadCart() {
 			compiled +=
 				'<li class="list-group-item">' +
 				'<div class="d-flex mt-2">' +
-				'<form class="row" id="orderForm" action="" novalidate="novalidate">' +
+				'<form class="row" id="orderForm">' +
 				'<div class="col-6 form-group">' +
 				'<label>Email</label>' +
-				'<input type="email" name="email" id="email" class="form-control required">' +
+				'<input type="email" name="email" id="email" class="form-control required" required>' +
 				'</div>' +
 				'<div class="col-6 form-group">' +
 				'<label>Phone Number</label>' +
-				'<input type="tel" name="phoneNum" id="phoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control required">' +
+				'<input type="tel" name="phoneNum" id="phoneNum" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control required" required>' +
 				'</div>' +
 				'<div class="col-12">' +
 				'<br>' +
@@ -272,7 +273,7 @@ function openDialogue(path) {
 		url: "/api/Item?ItemName=" + itemName,
 		contentType: "application/json",
 		success: function (result, status, xhr) {
-			var s = '<option value="none" selected disabled hidden>Select One</option>';
+			var s = '<option value="" selected disabled hidden></option>';
 			$.each(result, function (i, item) {
 				s += '<option value="' + item.strColor + '">' + item.strColor + '</option>';
 			});
@@ -282,4 +283,53 @@ function openDialogue(path) {
 			console.log(xhr)
 		}
 	});
+}
+
+function openEditModal(item) {
+	var path = item["Path"];
+	helpers.clearModal();
+	document.getElementById("CurtainImg").src = path;
+	document.getElementById("CurtainImg").alt = path;
+	let itemName = path.substring(path.lastIndexOf("\\") + 1, path.lastIndexOf("_"));
+	document.getElementById("orderColor").options.length = 0;
+	document.getElementById("curtainTitle").innerHTML = itemName;
+	$.ajax({
+		type: "GET",
+		url: "/api/Item?ItemName=" + itemName,
+		contentType: "application/json",
+		success: function (result, status, xhr) {
+			var s = '';
+			$.each(result, function (i, item) {
+				s += '<option value="' + item.strColor + '">' + item.strColor + '</option>';
+			});
+			$("#orderColor").html(s);
+			document.getElementById("orderWidth").value = item["orderWidth"];
+			document.getElementById("orderHeight").value = item["orderHeight"];
+			document.getElementById("orderColor").value = item["orderColor"];
+			document.getElementById("orderRoom").value = item["orderRoom"];
+			if (item["featureOne"]) {
+				document.getElementById("featureOne").checked = "true";
+			}
+			if (item["featureTwo"]) {
+				document.getElementById("featureTwo").checked = "true";
+			}
+			if (item["featureThree"]) {
+				document.getElementById("featureThree").checked = "true";
+			}
+		},
+		error: function (xhr, status, error) {
+			console.log(xhr)
+		}
+	});
+}
+
+//UUID Identifier
+function create_UUID() {
+	var dt = new Date().getTime();
+	var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+		var r = (dt + Math.random() * 16) % 16 | 0;
+		dt = Math.floor(dt / 16);
+		return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+	});
+	return uuid;
 }
