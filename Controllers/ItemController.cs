@@ -50,7 +50,7 @@ namespace Curtain.Controllers
                 msg += "Image: " + CartList[i].Path.Substring(CartList[i].Path.LastIndexOf("\\") + 1) + "\n";
                 msg += "Width: " + CartList[i].orderWidth + " inches\n";
                 msg += "Height: " + CartList[i].orderHeight + " inches\n";
-                msg += "Color: " + CartList[i].orderColor + "\n";
+                msg += "Color: " + CartList[i].orderColor + "\n"; 
                 msg += "Room: " + CartList[i].orderRoom + "\n\n";
                 msg += "Features:\n";
                 msg += "Motor: " + CartList[i].featureOne + "\n";
