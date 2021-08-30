@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\Curtains\New\" />
+    <Compile Remove="wwwroot\images\Curtains_All\New\**" />
+    <Content Remove="wwwroot\images\Curtains_All\New\**" />
+    <EmbeddedResource Remove="wwwroot\images\Curtains_All\New\**" />
+    <None Remove="wwwroot\images\Curtains_All\New\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -29,7 +29,7 @@ namespace Curtain.Controllers
 
         public IActionResult Index()
         {
-
+            ViewData["Images"] = GetImageList("Curtains_New");
             return View();
         }
 
@@ -43,9 +43,9 @@ namespace Curtain.Controllers
             return View();
         }
 
-        public IActionResult Products()
+        public IActionResult Products(string type)
         {
-            ViewData["Images"] = GetImageList("ALL");
+            ViewData["Images"] = GetImageList("Curtains_All");
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace Curtain.Controllers
 
         public List<ImageModel> GetImageList(string ProductType){
             var rootFolder = Directory.GetCurrentDirectory();
-            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(rootFolder + @"\wwwroot\images\Curtains\");
+            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(rootFolder + @"\wwwroot\images\" + ProductType + @"\");
             FileInfo[] rgFiles = di.GetFiles("*.jpg");
 
             List<ImageModel> list = new List<ImageModel>();
@@ -80,7 +80,6 @@ namespace Curtain.Controllers
                 image.ImgPath = fi.DirectoryName.Replace(rootFolder + @"\wwwroot","")+@"\";
                 image.EncodedImgPath = image.ImgPath.Replace(@"\", @"\\");
                 list.Add(image);
-
             }
             return list;
          }
