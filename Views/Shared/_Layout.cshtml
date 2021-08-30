@@ -149,17 +149,71 @@
                                 @if (String.Equals(ViewData["Title"], "Products"))
                                 {
                                     <li class="menu-item current">
-                                        <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products">
+                                        <a class="menu-link">
                                             <div>Shop</div>
                                         </a>
+                                        <ul class="sub-menu-container">
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="All">
+                                                    <div>All</div>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="Zebra">
+                                                    <div>Zebra</div>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="Aurora">
+                                                    <div>Aurora</div>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="Roller">
+                                                    <div>Roller</div>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="Drapery">
+                                                    <div>Drapery</div>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 }
                                 else
                                 {
                                     <li class="menu-item">
-                                        <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products">
+                                        <a class="menu-link">
                                             <div>Shop</div>
                                         </a>
+                                        <ul class="sub-menu-container">
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="All">
+                                                    <div>All</div>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="Zebra">
+                                                    <div>Zebra</div>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="Aurora">
+                                                    <div>Aurora</div>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="Roller">
+                                                    <div>Roller</div>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a class="menu-link" asp-area="" asp-controller="Home" asp-action="Products" asp-route-type="Drapery">
+                                                    <div>Drapery</div>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 }
                                 @if (String.Equals(ViewData["Title"], "About"))
